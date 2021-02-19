@@ -9,25 +9,44 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            // CarTest();
+            // BrandTest();
+            // ColorTest();
+
+        }
+
+        private static void ColorTest()
+        {
+            ColorManager colorManager = new ColorManager(new EfColorDal());
+            Console.WriteLine(" Color Id \tColor Name  ");
+            foreach (var color in colorManager.GetAll())
+            {
+                Console.WriteLine(color.ColorId + "\t\t" + color.ColorName);
+            }
+        }
+
+        private static void BrandTest()
+        {
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
+
+            Console.WriteLine(" Brand Id \tBrand Name  ");
+            foreach (var brand in brandManager.GetAll())
+            {
+                Console.WriteLine(brand.BrandId + "\t\t" + brand.BrandName);
+            }
+        }
+
+        private static void CarTest()
+        {
             CarManager carManager = new CarManager(new EfCarDal());
 
-            foreach (var car in carManager.GetAll())
+            Console.WriteLine(" Car Id \tBrand Name \tColor Name \tDaily Price  ");
+
+            foreach (var car in carManager.GetCarDetails())
             {
-               Console.WriteLine("***NEW CAR***");
+                Console.WriteLine(car.CarId + "\t\t" + car.BrandName + "\t\t" + car.ColorName + "\t\t" + car.DailyPrice);
 
-               Console.WriteLine("ID:" + car.Id);
-               Console.WriteLine("BRANDE ID:" + car.BrandId);
-               Console.WriteLine("DESCRIPTION:" + car.Description);
-               Console.WriteLine("COLOR ID:" + car.ColorId);
-               Console.WriteLine("MODEL YEAR:" + car.ModelYear);
-               Console.WriteLine("DAILY PRICE:" + car.DailyPrice);
-
-   
-     
             }
-            
-            
-            
         }
     }
 }
