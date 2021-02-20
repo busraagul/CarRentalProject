@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constans;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -16,23 +18,26 @@ namespace Business.Concrete
             _brandDal = brandDal;
         }
 
-        public void Add(Brand brand)
+        public IResult Add(Brand brand)
         {
             if (brand.BrandName.Length >= 2)
             {
                 _brandDal.Add(brand);
-                Console.WriteLine("Marka adı sisteme eklenmiştir");
+                 return new SuccessResult(Messages.BrandAdded);
+                
             }
             else
             {
-                Console.WriteLine("Marka adınız minimum 2 karakter olmalı");
+                return new ErrorResult(Messages.BrandNameInvalid);
+             
             }
         }
 
-        public void Delete(Brand brand)
+        public IResult Delete(Brand brand)
         {
             _brandDal.Delete(brand);
-            Console.WriteLine("Marka sistemden silinmiştir");
+            return new SuccessResult(Messages.BrandDeleted);
+          
         }
 
         public List<Brand> GetAll()
@@ -40,10 +45,11 @@ namespace Business.Concrete
             return _brandDal.GetAll();
         }
 
-        public void Update(Brand brand)
+        public IResult Update(Brand brand)
         {
             _brandDal.Update(brand);
-            Console.WriteLine("Marka güncellenmiştir");
+            return new SuccessResult(Messages.BrandUpdated);
+            
         }
     }
 

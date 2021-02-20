@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constans;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concerete;
@@ -18,30 +20,38 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
             if (car.DailyPrice > 0)
             {
                 _carDal.Add(car);
-                Console.WriteLine("Araba Sisteme eklendi");
+                return new SuccessResult(Messages.CarAdded);
+                
             }
             else
             {
-                Console.WriteLine("Lütfen arabanın günlük fiyatını Sıfır'dan büyük bir değer giriniz");
+                return new ErrorResult(Messages.DailyPriceInvalid);
+                
             }
             
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             _carDal.Delete(car);
-            Console.WriteLine("Araba sistemden silinmiştir.");
+            return new SuccessResult(Messages.CarDeleted);
+           
         }
 
         public List<Car> GetAll()
         {
             return _carDal.GetAll();
 
+        }
+
+        public Car GetByCarId(int carId)
+        {
+            return _carDal.Get(c=>c.CarId == carId);
         }
 
         public List<CarDetailDto> GetCarDetails()
@@ -60,10 +70,12 @@ namespace Business.Concrete
             return _carDal.GetAll(p => p.ColorId == id);
         }
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
             _carDal.Update(car);
-            Console.WriteLine("Araba güncellenmiştir");
+            return new SuccessResult(Messages.CarUpdated);
+                
+          
         }
     }
 }
