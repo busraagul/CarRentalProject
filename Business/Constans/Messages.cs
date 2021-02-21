@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities.Concerete;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,6 +11,7 @@ namespace Business.Constans
         public static string CarDeleted = "Araba sistemden silindi";
         public static string CarUpdated = "Araba bilgisi güncellendi";
         public static string DailyPriceInvalid = "Lütfen arabanın günlük fiyatını Sıfır'dan büyük bir değer giriniz";
+        public static string CarListed = "Arabalar Listelendi";
         public static string BrandAdded = "Marka sisteme eklendi";
         public static string BrandDeleted = "Marka sistemden silindi";
         public static string BrandUpdated = "Marka bilgisi güncellendi";
@@ -17,7 +19,8 @@ namespace Business.Constans
         public static string ColorAdded = "Renk sisteme eklendi";
         public static string ColorDeleted = "Renk sistemden silindi";
         public static string ColorUpdated = "Renk bilgisi güncellendi";
-
-
+        internal static string MaintenanceTime = "Sistem Bakımda";
+        internal static string BrandListed="Markalar Listelendi";
+        internal static string ColorListed="Renkler Listelendi";
     }
 }

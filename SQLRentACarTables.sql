@@ -21,3 +21,13 @@ CREATE TABLE Colors
 	ColorId int PRIMARY KEY IDENTITY(1,1),
 	ColorName nvarchar(25),
 )
+
+CREATE TABLE Users(
+	UserId int PRIMARY KEY IDENTITY(1,1),
+	FirstName nvarchar(50),
+	LastName nvarchar(50),
+	EMail nvarchar(50),
+	Password nvarchar(50),
+)
+
+
