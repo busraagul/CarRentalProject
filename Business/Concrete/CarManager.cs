@@ -25,7 +25,7 @@ namespace Business.Concrete
             if (car.DailyPrice > 0)
             {
                 _carDal.Add(car);
-                return new SuccessResult(Messages.CarAdded);
+                return new SuccessResult(Messages.Added);
                 
             }
             else
@@ -39,7 +39,7 @@ namespace Business.Concrete
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
-            return new SuccessResult(Messages.CarDeleted);
+            return new SuccessResult(Messages.Deleted);
            
         }
 
@@ -50,24 +50,24 @@ namespace Business.Concrete
                 return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
             }
             
-            return new DataResult<List<Car>>(_carDal.GetAll(),true,Messages.CarListed);
+            return new DataResult<List<Car>>(_carDal.GetAll(),true,Messages.Listed);
 
         }
 
         public IDataResult<Car> GetByCarId(int carId)
         {
-            return new DataResult<Car>(_carDal.Get(c=>c.CarId == carId),true,Messages.CarListed);
+            return new DataResult<Car>(_carDal.Get(c=>c.CarId == carId),true,Messages.Listed);
         }
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            return new DataResult<List<CarDetailDto>>(_carDal.GetCarDetails(),true,Messages.CarListed);
+            return new DataResult<List<CarDetailDto>>(_carDal.GetCarDetails(),true,Messages.Listed);
 
         }
 
         public IDataResult<List<Car>> GetCarsByBrandId(int id)
         {
-            return new DataResult<List<Car>>(_carDal.GetAll(p=>p.BrandId== id),true,Messages.CarListed);
+            return new DataResult<List<Car>>(_carDal.GetAll(p=>p.BrandId== id),true,Messages.Listed);
         }
 
         public IDataResult<List<Car>> GetCarsByColorId(int id)
@@ -78,7 +78,7 @@ namespace Business.Concrete
         public IResult Update(Car car)
         {
             _carDal.Update(car);
-            return new SuccessResult(Messages.CarUpdated);
+            return new SuccessResult(Messages.Updated);
                 
           
         }

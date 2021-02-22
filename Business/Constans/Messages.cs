@@ -7,20 +7,23 @@ namespace Business.Constans
 {
     public static class Messages
     {
-        public static string CarAdded = "Araba sisteme eklendi";
-        public static string CarDeleted = "Araba sistemden silindi";
-        public static string CarUpdated = "Araba bilgisi güncellendi";
-        public static string DailyPriceInvalid = "Lütfen arabanın günlük fiyatını Sıfır'dan büyük bir değer giriniz";
-        public static string CarListed = "Arabalar Listelendi";
-        public static string BrandAdded = "Marka sisteme eklendi";
-        public static string BrandDeleted = "Marka sistemden silindi";
-        public static string BrandUpdated = "Marka bilgisi güncellendi";
-        public static string BrandNameInvalid = "Marka ismi geçersiz";
-        public static string ColorAdded = "Renk sisteme eklendi";
-        public static string ColorDeleted = "Renk sistemden silindi";
-        public static string ColorUpdated = "Renk bilgisi güncellendi";
+        //CRUD
+        public static string Added = "Ekleme işlemi gerçekleştirildi";
+        public static string Deleted = "Silme işlemi gerçekleştirildi";
+        public static string Updated = "Güncellenme işlemi gerçekleştirildi";
+        public static string Listed = "Listeleme işlemi gerçekleştirildi";
+
+        //CHECK
+        public static string NameInvalid = "Marka ismi geçersiz";
         internal static string MaintenanceTime = "Sistem Bakımda";
-        internal static string BrandListed="Markalar Listelendi";
-        internal static string ColorListed="Renkler Listelendi";
+
+        //SPECİAL
+        public static string DailyPriceInvalid = "Lütfen arabanın günlük fiyatını Sıfır'dan büyük bir değer giriniz";
+        
+      
+        
+        
+        
+     
     }
 }

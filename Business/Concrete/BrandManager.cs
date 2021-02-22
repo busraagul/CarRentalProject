@@ -23,12 +23,12 @@ namespace Business.Concrete
             if (brand.BrandName.Length >= 2)
             {
                 _brandDal.Add(brand);
-                 return new SuccessResult(Messages.BrandAdded);
+                 return new SuccessResult(Messages.Added);
                 
             }
             else
             {
-                return new ErrorResult(Messages.BrandNameInvalid);
+                return new ErrorResult(Messages.NameInvalid);
              
             }
         }
@@ -36,19 +36,19 @@ namespace Business.Concrete
         public IResult Delete(Brand brand)
         {
             _brandDal.Delete(brand);
-            return new SuccessResult(Messages.BrandDeleted);
+            return new SuccessResult(Messages.Deleted);
           
         }
 
         public IDataResult<List<Brand>> GetAll()
         {
-            return new DataResult<List<Brand>>(_brandDal.GetAll(),true,Messages.BrandListed);
+            return new DataResult<List<Brand>>(_brandDal.GetAll(),true,Messages.Listed);
         }
 
         public IResult Update(Brand brand)
         {
             _brandDal.Update(brand);
-            return new SuccessResult(Messages.BrandUpdated);
+            return new SuccessResult(Messages.Updated);
             
         }
     }
