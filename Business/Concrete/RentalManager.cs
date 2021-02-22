@@ -17,6 +17,8 @@ namespace Business.Concrete
         {
             _rentalDal = rentalDal;
         }
+
+
         public IResult Add(Rental rental)
         {
             _rentalDal.Add(rental);
@@ -42,7 +44,7 @@ namespace Business.Concrete
 
         public IDataResult<List<RentalDetailDto>> GetRentalDetails()
         {
-            throw new NotImplementedException();
+            return new DataResult<List<RentalDetailDto>>( _rentalDal.GetRentalDetails(), true, Messages.Listed);
         }
 
         public IResult Update(Rental rental)

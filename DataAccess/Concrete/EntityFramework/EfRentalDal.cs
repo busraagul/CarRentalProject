@@ -33,8 +33,10 @@ namespace DataAccess.Concrete.EntityFramework
                                  CarDailyPrice = c.DailyPrice,
                                  CarBrand = b.BrandName,
                                  RentDate = r.RentDate,
-                                 ReturnDate = r.ReturnDate
-                             };
+                                 ReturnDate = r.ReturnDate,
+                                 Descriptions=c.Descriptions
+
+                           };
                 return result.ToList();
 
 

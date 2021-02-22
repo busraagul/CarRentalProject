@@ -1,6 +1,8 @@
 ﻿using Business.Concrete;
+using Business.Constans;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
+using Entities.Concrete;
 using System;
 
 namespace ConsoleUI
@@ -9,10 +11,66 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-             CarTest();
+            //CarTest();
             // BrandTest();
-            // ColorTest();
+            //ColorTest();
+            //UserAddition();
+            //CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
 
+            
+            
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            Console.WriteLine(" CarId \tCarBrand  \tCarDailyPrice \tDescriptions ");
+            foreach (var rental in rentalManager.GetRentalDetails().Data)
+            {
+                Console.WriteLine(rental.CarId + "\t\t" +rental.CarBrand + "\t\t" +rental.CarDailyPrice + "\t\t" +rental.Descriptions );  
+
+            }
+
+            Console.WriteLine("------------------");
+            Console.WriteLine("Kiralama işlemi için aşağıdaki bilgileri doldurunuz");
+            Console.WriteLine("Car Id: ");
+            int addCarId = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Customer Id: ");
+            int addCustomerId = Convert.ToInt32(Console.ReadLine());
+
+            Rental addRental = new Rental
+            {
+                CarId = addCarId,
+                CustomerId = addCustomerId,
+                RentDate = DateTime.Now,
+                ReturnDate = null
+            };
+            Console.WriteLine(Messages.SuccessRental);
+            
+
+
+        }
+
+        private static void UserAddition()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+
+            Console.WriteLine("Yeni Kullanıcı Kaydı için Aşağıdaki Alanları Eksiksiz Doldurunuz");
+            Console.WriteLine("Adınız:");
+            string addFirstName = Console.ReadLine();
+            Console.WriteLine("Soyadınız:");
+            string addLastName = Console.ReadLine();
+            Console.WriteLine("EMail:");
+            string addEMail = Console.ReadLine();
+            Console.WriteLine("Password: ");
+            string addUserPassword = Console.ReadLine();
+
+            User addUserNames = new User
+            {
+                FirstName = addFirstName,
+                LastName = addLastName,
+                EMail = addEMail,
+                Password = addUserPassword
+
+            };
+            userManager.Add(addUserNames);
+            Console.WriteLine(Messages.Added);
         }
 
         private static void ColorTest()
@@ -24,6 +82,7 @@ namespace ConsoleUI
                 Console.WriteLine(color.ColorId + "\t\t" + color.ColorName);
             }
         }
+
 
         private static void BrandTest()
         {
@@ -47,6 +106,10 @@ namespace ConsoleUI
                 Console.WriteLine(car.CarId + "\t\t" + car.BrandName + "\t\t" + car.ColorName + "\t\t" + car.DailyPrice);
 
             }
+
         }
+
+
     }
 }
+

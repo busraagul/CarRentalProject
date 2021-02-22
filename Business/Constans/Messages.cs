@@ -19,11 +19,7 @@ namespace Business.Constans
 
         //SPECİAL
         public static string DailyPriceInvalid = "Lütfen arabanın günlük fiyatını Sıfır'dan büyük bir değer giriniz";
-        
-      
-        
-        
-        
-     
+
+        public static string SuccessRental = "Kiralama İşlemi gerçekleştirilmiştir.";
     }
 }
