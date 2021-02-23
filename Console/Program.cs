@@ -14,19 +14,21 @@ namespace ConsoleUI
             //CarTest();
             // BrandTest();
             //ColorTest();
-            //UserAddition();
-            //CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+           // UserAddition();
+            RentalTest();
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+        }
 
-            
-            
+        private static void RentalTest()
+        {
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
             Console.WriteLine(" CarId \tCarBrand  \tCarDailyPrice \tDescriptions ");
+            
             foreach (var rental in rentalManager.GetRentalDetails().Data)
             {
-                Console.WriteLine(rental.CarId + "\t\t" +rental.CarBrand + "\t\t" +rental.CarDailyPrice + "\t\t" +rental.Descriptions );  
-
+                Console.WriteLine(rental.CarId + "\t\t" + rental.CarBrand + "\t\t" + rental.CarDailyPrice + "\t\t" + rental.Descriptions);
             }
-
+            Console.ReadLine();
             Console.WriteLine("------------------");
             Console.WriteLine("Kiralama işlemi için aşağıdaki bilgileri doldurunuz");
             Console.WriteLine("Car Id: ");
@@ -42,9 +44,6 @@ namespace ConsoleUI
                 ReturnDate = null
             };
             Console.WriteLine(Messages.SuccessRental);
-            
-
-
         }
 
         private static void UserAddition()
