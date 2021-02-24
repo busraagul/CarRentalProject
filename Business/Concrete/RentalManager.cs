@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constans;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConserns.Validation.FluentValidation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -21,6 +23,9 @@ namespace Business.Concrete
 
         public IResult Add(Rental rental)
         {
+            ValidationTool.Validate(new RentalValidator(), rental);
+
+
             _rentalDal.Add(rental);
             return new SuccessResult(Messages.Added);
         }
