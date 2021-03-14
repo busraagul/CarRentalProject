@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Business.Abstract;
+﻿using Business.Abstract;
 using Business.Constans;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
@@ -9,6 +6,9 @@ using Core.Utilities.Security.Hashing;
 using Core.Utilities.Security.JWT;
 using Core.Utilities.Security.JWT.Abstract;
 using Entities.DTOs;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Business.Concrete
 {
@@ -42,19 +42,18 @@ namespace Business.Concrete
 
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
         {
-            //var userToCheck = _userService.GetByMail(userForLoginDto.Email);
-            //if (userToCheck == null)
-            //{
-            //    return new ErrorDataResult<User>(Messages.UserNotFound);
-            //}
+            var userToCheck = _userService.GetByMail(userForLoginDto.Email);
+            if (userToCheck == null)
+            {
+                return new ErrorDataResult<User>(Messages.UserNotFound);
+            }
 
-            //if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.PasswordHash, userToCheck.PasswordSalt))
-            //{
-            //    return new ErrorDataResult<User>(Messages.PasswordError);
-            //}
+            if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.Data.PasswordHash, userToCheck.Data.PasswordSalt))
+            {
+                return new ErrorDataResult<User>(Messages.PasswordError);
+            }
 
-            //return new SuccessDataResult<User>(userToCheck, Messages.SuccessfulLogin);
-            return new SuccessDataResult<User>();
+            return new SuccessDataResult<User>(userToCheck.Data, Messages.SuccessfulLogin);
         }
 
         public IResult UserExists(string email)
@@ -68,9 +67,11 @@ namespace Business.Concrete
 
         public IDataResult<AccessToken> CreateAccessToken(User user)
         {
-            //var claims = _userService.GetClaims(user);
-            //var accessToken = _tokenHelper.CreateToken(user,claims);
-            return new SuccessDataResult<AccessToken>(/*accessToken, Messages.AccessTokenCreated*/);
+
+            var claims = _userService.GetClaims(user);
+            var accessToken = _tokenHelper.CreateToken(user, claims.Data);
+            return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
         }
     }
+
 }
